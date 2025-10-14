@@ -82,7 +82,7 @@
 				};
 			};
 			buildConfigurationList = 48353F252E9B40AC0038C356 /* Build configuration list for PBXProject "TiendaPratica" */;
-			compatibilityVersion = "Xcode 15.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
