@@ -19,10 +19,10 @@ final class Item {
 }
 
 @Model
-final class Porducto {
+final class Producto {
     var image: String
     var name: String
-    var pirce: Double
+    var price: Double
     var stock: Int
 
     // Persist only the raw values
@@ -35,10 +35,10 @@ final class Porducto {
         set { typeRawValues = newValue.map { $0.rawValue } }
     }
     
-    init(image: String, name: String, pirce: Double, stock: Int, types: [typesPorducto]) {
+    init(image: String, name: String, price: Double, stock: Int, types: [typesPorducto]) {
         self.image = image
         self.name = name
-        self.pirce = pirce
+        self.price = price
         self.stock = stock
         self.typeRawValues = types.map { $0.rawValue }
     }
@@ -46,7 +46,7 @@ final class Porducto {
 
 enum typesPorducto: String, CaseIterable, Identifiable {
     case ropa = "Ropa"
-    case game = "Gmae"
+    case game = "Game"
     case acesroy = "Acesorios"
     case casa = "Casa"
     

@@ -10,11 +10,12 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var context
-    @Query(sort: \Porducto.name) private var productos: [Porducto]
+    @Query(sort: \Producto.name) public var productos: [Producto]
     @State private var showingAddSheet = false
-    var player_photo:String = "https://m.media-amazon.com/images/I/51IWM4JroUL._UY1000_.jpg"
+   
     
     var body: some View {
+       
         NavigationStack {
             List {
                 if productos.isEmpty {
@@ -25,47 +26,7 @@ struct ContentView: View {
                     )
                 } else {
                     ForEach(productos) { producto in
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack{
-                                AsyncImage(url: URL(string: player_photo)) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        Image(systemName: "photo")
-                                            .resizable()
-                                            .frame(width: 75, height: 75)
-                                            .padding(4)
-                                            .border(Color.gray)
-                                            .padding(.leading, 1)
-                                    case .success(let image):
-                                        image.resizable()
-                                            .frame(width: 75, height: 75)
-                                            .padding(4)
-                                            .border(Color.gray)
-                                            .padding(.leading, 1)
-                                    case .failure:
-                                        Image(systemName: "photo")
-                                            .resizable()
-                                            .frame(width: 75, height: 75)
-                                            .padding(4)
-                                            .border(Color.gray)
-                                            .padding(.leading, 1)
-                                    @unknown default:
-                                        EmptyView()
-                                    }
-                                }
-                                VStack{
-                                    Text(producto.name)
-                                        .font(.headline)
-                                    Text("Precio: \(producto.pirce, format: .currency(code: "USD"))")
-                                        .font(.subheadline)
-                                    Text("Stock: \(producto.stock)")
-                                        .font(.subheadline)
-                                    Text("Tipo:\(producto.types.map(\.rawValue).joined(separator: ", "))")
-                                        .font(.footnote)
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                        }
+                        ProductView(producto: producto)
                     }
                     .onDelete(perform: deleteProducto)
                     
@@ -83,7 +44,7 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showingAddSheet) {
                 AddProductoView()
-                    .presentationDetents([.medium])
+                    .presentationDetents([.large])
             }
         }
     }
@@ -149,10 +110,10 @@ struct AddProductoView: View {
         guard let priceValue = Double(price),
               let stockValue = Int(stock) else { return }
         
-        let producto = Porducto(
+        let producto = Producto(
             image: "",
             name: name,
-            pirce: priceValue,
+            price: priceValue,
             stock: stockValue,
             types: Array(selectedTypes)
         )
