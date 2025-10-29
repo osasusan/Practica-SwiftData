@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  Producto.swift
 //  TiendaPratica
 //
 //  Created by Osasu sanchez on 12/10/25.
@@ -8,19 +8,10 @@
 import Foundation
 import SwiftData
 
-@Model
-final class Item {
-    var timestamp: Date
-    
-    init(timestamp: Date) {
-        self.timestamp = timestamp
-    }
-
-}
 
 @Model
 final class Producto {
-    var image: String
+    var image: String 
     var name: String
     var price: Double
     var stock: Int

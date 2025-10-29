@@ -111,7 +111,7 @@ struct AddProductoView: View {
               let stockValue = Int(stock) else { return }
         
         let producto = Producto(
-            image: "",
+            image: "https://picsum.photos/200/300",
             name: name,
             price: priceValue,
             stock: stockValue,
@@ -146,5 +146,5 @@ struct MultipleSelectionRow: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+      
 }
